@@ -10,6 +10,15 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: {
+          green: '#58932f',  // dark green
+          light: '#77b15b',    // medium green
+          lighter: '#abc599',  // light green
+        },
+        custom: {
+          black: '#000000',
+          white: '#ffffff',
+        }
       },
     },
   },
