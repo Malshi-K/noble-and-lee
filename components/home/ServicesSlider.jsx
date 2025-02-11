@@ -104,6 +104,7 @@ const ServicesSlider = () => {
   return (
     <SectionWrapper>
       <div className="w-full max-w-7xl mx-auto">
+        {/* Title Section */}
         <div className="text-center mb-6 sm:mb-8 md:mb-10">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 sm:mb-4">
             WE DO
@@ -111,31 +112,37 @@ const ServicesSlider = () => {
           <div className="w-16 sm:w-20 md:w-24 h-0.5 bg-white mx-auto" />
         </div>
 
-        <div className="relative">
-          {/* Navigation Buttons */}
-          <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 flex justify-between pointer-events-none px-2 sm:px-4 md:px-6">
-            <button
-              onClick={prevSlide}
-              className={`pointer-events-auto transform 
-                p-1.5 sm:p-2 rounded-full bg-black/20 text-white hover:bg-black/30 transition-all
-                ${currentSlide === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
-              disabled={currentSlide === 0}
-            >
-              <ChevronLeft className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
-            </button>
+        {/* Slider Container */}
+        <div className="relative px-12 sm:px-16">
+          {/* Left Arrow */}
+          <button
+            onClick={prevSlide}
+            className={`absolute left-0 top-1/2 -translate-y-1/2 transform
+              w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center
+              rounded-full bg-primary-green text-white
+              hover:bg-primary-green/90 transition-all z-10
+              ${currentSlide === 0 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
+              focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-green`}
+            disabled={currentSlide === 0}
+          >
+            <ChevronLeft className="w-6 h-6 sm:w-7 sm:h-7" />
+          </button>
 
-            <button
-              onClick={nextSlide}
-              className={`pointer-events-auto transform
-                p-1.5 sm:p-2 rounded-full bg-black/20 text-white hover:bg-black/30 transition-all
-                ${currentSlide === totalSlides - 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
-              disabled={currentSlide === totalSlides - 1}
-            >
-              <ChevronRight className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
-            </button>
-          </div>
+          {/* Right Arrow */}
+          <button
+            onClick={nextSlide}
+            className={`absolute right-0 top-1/2 -translate-y-1/2 transform
+              w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center
+              rounded-full bg-primary-green text-white
+              hover:bg-primary-green/90 transition-all z-10
+              ${currentSlide === totalSlides - 1 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
+              focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-green`}
+            disabled={currentSlide === totalSlides - 1}
+          >
+            <ChevronRight className="w-6 h-6 sm:w-7 sm:h-7" />
+          </button>
 
-          {/* Slider Container */}
+          {/* Slides */}
           <div className="overflow-hidden">
             <div 
               className="flex transition-transform duration-500 ease-out"
@@ -165,7 +172,7 @@ const ServicesSlider = () => {
                           {service.title}
                         </h3>
 
-                        <p className="text-white/70 text-xs sm:text-sm text-center">
+                        <p className="text-white/70 text-sm text-center">
                           {service.desc}
                         </p>
                       </div>
@@ -186,6 +193,7 @@ const ServicesSlider = () => {
                     ? 'bg-primary-green w-6 sm:w-8' 
                     : 'bg-white/50 w-1.5 sm:w-2 hover:bg-white/70'
                 }`}
+                aria-label={`Go to slide ${index + 1}`}
               />
             ))}
           </div>
