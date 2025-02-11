@@ -1,111 +1,90 @@
 import React from "react";
-import { Phone, Mail, Linkedin, MapPin, Facebook } from "lucide-react";
+import { Phone, Mail, MapPin } from "lucide-react";
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="relative bg-white text-primary-green">
-      {/* Decorative circles */}
+    <footer className="relative bg-white text-primary-green w-full">
+      {/* Decorative circles - Responsive sizes */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Bottom right circle */}
-        <div className="absolute -bottom-48 -right-48 w-[500px] h-[500px] rounded-full bg-primary-light/30" />
-        {/* Bottom left circle - smaller and more transparent */}
-        <div className="absolute -bottom-24 -left-24 w-64 h-64 rounded-full bg-primary-green" />
+        <div className="absolute -bottom-24 sm:-bottom-32 lg:-bottom-48 -right-24 sm:-right-32 lg:-right-48 w-48 sm:w-64 lg:w-96 h-48 sm:h-64 lg:h-96 rounded-full bg-primary-light/30" />
+        <div className="absolute -bottom-12 sm:-bottom-16 lg:-bottom-24 -left-12 sm:-left-16 lg:-left-24 w-32 sm:w-48 lg:w-64 h-32 sm:h-48 lg:h-64 rounded-full bg-primary-green/20" />
       </div>
 
-      <div className="relative z-10 py-12">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="relative z-10 py-8 sm:py-12">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Main Content Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
             {/* Company Info Section */}
-            <div>
-              <img
-                src="/images/logo.png"
-                alt="Peak Project Management"
-                className="h-16 w-auto mb-4"
-              />
-              <p className="text-black text-sm">
+            <div className="text-center sm:text-left">
+              <div className="flex justify-center sm:justify-start">
+                <img
+                  src="/images/logo.png"
+                  alt="Peak Project Management"
+                  className="h-12 sm:h-16 w-auto mb-4"
+                />
+              </div>
+              <p className="text-black text-sm max-w-md mx-auto sm:mx-0">
                 Noble & Lee have a long history of helping local businesses.
               </p>
             </div>
 
-            {/* Services */}
-            <div>
-              <h3 className="font-semibold mb-4">Our Services</h3>
+            {/* Services Section */}
+            <div className="text-center sm:text-left">
+              <h3 className="font-semibold mb-4 text-lg">Our Services</h3>
               <ul className="space-y-2 text-black">
-                <li>
-                  <a
-                    href="/services/project-management"
-                    className="hover:text-primary-light"
-                  >
-                    ACC
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/services/safety-management"
-                    className="hover:text-primary-light"
-                  >
-                    Administration & Record Keeping
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/services/quality-assurance"
-                    className="hover:text-primary-light"
-                  >
-                    Asset Protection
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/services/team-coordination"
-                    className="hover:text-primary-light"
-                  >
-                    Bloodstock Consultancy
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/services/compliance"
-                    className="hover:text-primary-light"
-                  >
-                    Business Consultancy
-                  </a>
-                </li>
+                {[
+                  { name: "ACC", href: "/services/project-management" },
+                  { name: "Administration & Record Keeping", href: "/services/safety-management" },
+                  { name: "Asset Protection", href: "/services/quality-assurance" },
+                  { name: "Bloodstock Consultancy", href: "/services/team-coordination" },
+                  { name: "Business Consultancy", href: "/services/compliance" },
+                ].map((service) => (
+                  <li key={service.name}>
+                    <a
+                      href={service.href}
+                      className="hover:text-primary-light transition-colors duration-200"
+                    >
+                      {service.name}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
 
-            {/* Contact */}
-            <div>
-              <h3 className="font-semibold mb-4">Contact Us</h3>
+            {/* Contact Section */}
+            <div className="text-center sm:text-left">
+              <h3 className="font-semibold mb-4 text-lg">Contact Us</h3>
               <div className="space-y-4">
                 <a
                   href="tel:07 888 7033"
-                  className="flex items-start gap-2 text-black"
+                  className="flex items-center justify-center sm:justify-start gap-2 text-black hover:text-primary-light transition-colors duration-200"
                 >
-                  <Phone className="w-5 h-5 mt-1" />
+                  <Phone className="w-5 h-5" />
                   <span>(07) 888 7033</span>
                 </a>
 
-                <p className="flex items-start gap-2 text-black">
-                  <MapPin className="w-5 h-5 mt-1" />
-                  <span>51 Arawa St, PO Box 76, Matamata</span>
-                </p>
+                <div className="flex items-start justify-center sm:justify-start gap-2 text-black">
+                  <MapPin className="w-5 h-5 mt-1 flex-shrink-0" />
+                  <span className="text-left">51 Arawa St, PO Box 76, Matamata</span>
+                </div>
+
                 <a
                   href="mailto:info@noble-lee.co.nz"
-                  className="flex items-center gap-2 text-black hover:text-primary-light"
+                  className="flex items-center justify-center sm:justify-start gap-2 text-black hover:text-primary-light transition-colors duration-200"
                 >
                   <Mail className="w-5 h-5" />
-                  info@noble-lee.co.nz
+                  <span>info@noble-lee.co.nz</span>
                 </a>
               </div>
             </div>
           </div>
 
-          {/* Bottom Section */}
-          <div className="border-t border-black/20 mt-8 pt-8  text-center text-sm text-primary-green">
+          {/* Copyright Section */}
+          <div className="border-t border-black/20 mt-8 pt-6 text-center text-sm text-primary-green">
             <p>
-              Copyright © {new Date().getFullYear()} GDC Digital Solutions. All
-              Rights Reserved.
+              Copyright © {currentYear} GDC Digital Solutions. All Rights Reserved.
             </p>
           </div>
         </div>
